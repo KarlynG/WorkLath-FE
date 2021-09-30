@@ -27,10 +27,16 @@ import Cards from '@/components/Cards.vue';
 
 @Component({
   components: {
+<<<<<<< HEAD
     Cards,
+=======
+    HelloWorld,
+    
+>>>>>>> 16a4b4411cfd61980371b00db74ff09f24e53ea7
   },
 })
 export default class Home extends Vue {}
+
 </script>
 
 <style>

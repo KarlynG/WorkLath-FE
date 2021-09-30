@@ -1,12 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <BarraNave/>
+      <router-view/>
     </div>
-    <router-view/>
+    <PiePagina/>
+    
   </div>
 </template>
+
+<script lang="ts">
+import PiePagina from '@/components/PiePagina.vue';
+import BarraNave from '@/components/BarraNave.vue';
+export default {
+  components: {
+    PiePagina,
+    BarraNave
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -17,16 +29,5 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
