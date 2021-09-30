@@ -1,19 +1,22 @@
 <template>
-  <div class="about">
-  <tablaf/>
+   <div class="vistaT">
+<h3>Hola mam</h3>
+<tablaf/>
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import Cards from '@/components/Cards.vue';
 import tablaf from '@/components/tablaF.vue';
 
 @Component({
   components: {
-    Cards,
     tablaf
   },
 })
-export default class Home extends Vue {}
+export default class vista extends Vue {}
 </script>
+
+<style>
+
+</style>
