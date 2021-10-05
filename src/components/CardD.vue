@@ -12,15 +12,12 @@
           <img src="@/assets/Tecno.jpg" style="width:50px;height:50px;" alt="Placeholder image">
         </figure>
       </div>
-      <div class="media-content">
-        <p class="title is-4">puesto</p>
-        <p class="subtitle is-6">compañia</p>
-      </div>
     </div>
 
-    <div class="content">informacion del empleo 
+    <div class="content">
+      <p> ver todos los empleos</p>
       <br>
-      <button class="button is-info is-light">Detalles</button>
+      <button class="button is-info is-light" @click="$router.push('vistaT')">Ver Empleos</button>
     </div>
   </div>
 </div>

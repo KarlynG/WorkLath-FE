@@ -1,17 +1,16 @@
 <template>
    <div class="vistaT">
-<h3>Hola mam</h3>
-<tablaf/>
+<tablaP/>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import tablaf from '@/components/tablaF.vue';
+import tablaP from '@/components/tablaP.vue';
 
 @Component({
   components: {
-    tablaf
+    tablaP
   },
 })
 export default class vista extends Vue {}

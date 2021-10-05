@@ -5,14 +5,14 @@
         <cards/>
         <cards/>
         <cards/>
-        <cards/>
+        <card-des/>
         <hr>
       </div>
       <div class="container">
         <cards/>
         <cards/>
         <cards/>
-        <cards/>
+        <card-prog/>
       </div>
     </div>
   </div>
@@ -21,10 +21,14 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Cards from '@/components/Cards.vue';
+import CardProg from '@/components/CardP.vue';
+import CardDes from '@/components/CardD.vue';
 
 @Component({
   components: {
     Cards,
+    CardProg,
+    CardDes
   },
 })
 export default class Home extends Vue {}

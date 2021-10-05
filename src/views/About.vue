@@ -1,18 +1,18 @@
 <template>
   <div class="about">
-  <tablaf/>
+  <tablaD/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Cards from '@/components/Cards.vue';
-import tablaf from '@/components/tablaF.vue';
+import tablaD from '@/components/tablaD.vue';
 
 @Component({
   components: {
     Cards,
-    tablaf
+    tablaD
   },
 })
 export default class Home extends Vue {}
