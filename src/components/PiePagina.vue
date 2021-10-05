@@ -25,6 +25,7 @@ export default class PiePagina extends Vue {
     .footer{
     background-color: #e6e6e6;
     padding: 3rem 1.5rem 6rem;
+    margin-top: 2em;
     }
     
     a{

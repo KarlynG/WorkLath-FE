@@ -1,22 +1,19 @@
 <template>
   <div class="home">
-    <h3>Desing</h3>
-    <hr>
     <div class="container">
-      <cards/>
-      <cards/>
-      <cards/>
-      <cards/>
-      <hr>
-    </div>
-    <hr>
-    <h3>Progamming</h3>
-    <hr>
-    <div class="container">
-      <cards/>
-      <cards/>
-      <cards/>
-      <cards/>
+      <div class="container">
+        <cards/>
+        <cards/>
+        <cards/>
+        <cards/>
+        <hr>
+      </div>
+      <div class="container">
+        <cards/>
+        <cards/>
+        <cards/>
+        <cards/>
+      </div>
     </div>
   </div>
 </template>

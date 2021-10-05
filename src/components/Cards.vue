@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width:250px;height:250px;">
+  <div class="card" >
   <div class="card-image">
     <figure class="image is-1by1">
       <img src="@/assets/Tecno.jpg" alt="Placeholder image" >
