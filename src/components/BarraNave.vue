@@ -106,7 +106,7 @@ export default class BarraNave extends Vue {
 </script>
 
 
-<style scoped lang="scss">
+<style >
 .hero{
      padding: 30px;
 }
@@ -125,7 +125,7 @@ a{
 .container .is-max-desktop{
    width: 40%;
 }
-.b-sidebar .sidebar-content .is-light {
+.b-sidebar .sidebar-content  {
     width: 500px!important;
 }
     

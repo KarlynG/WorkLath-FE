@@ -84,10 +84,10 @@
 
             <div class="field is-grouped">
             <div class="control">
-                <button class="button is-info"  >Submit</button>
+                <button class="button is-info">Enviar</button>
             </div>
             <div class="control ">
-                <button class="button is-info is-light" expanded>Cancel</button>
+                <button class="button is-info is-light" expanded>Cancelar</button>
             </div>
             </div>
   </div>
