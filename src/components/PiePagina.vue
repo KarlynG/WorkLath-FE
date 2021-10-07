@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
   <div class="content has-text-centered">
-    <p>
+    <p class="has-text-white">
       <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
       <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
       is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
@@ -23,8 +23,9 @@ export default class PiePagina extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     .footer{
-    background-color: #e6e6e6;
+    background-color: #000000;
     padding: 3rem 1.5rem 6rem;
+    
     }
     
     a{
