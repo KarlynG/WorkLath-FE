@@ -126,9 +126,13 @@ a{
    width: 40%;
 }
 .b-sidebar .sidebar-content  {
-    width: 500px!important;
+    width: 530px!important;
 }
-    
+.select:not(.is-multiple):not(.is-loading)::after,
+.navbar-link:not(.is-arrowless)::after {
+    border-color: #167df0 !important;  
+} 
+
 
 </style>
 

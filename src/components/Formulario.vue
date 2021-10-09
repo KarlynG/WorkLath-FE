@@ -1,11 +1,14 @@
 <template>
   <div class="container is-max-desktop">
                 <h1>Nuevo empleo</h1>
-
-            <div class="field">
-            <label class="label">Categoria</label>
+            <div class="columns">
+                <div class="columns is-two-fifths">
+            <div class="field ">
+            <label class="label"
+            >Categoria</label>
             <div class="control">
-                <div class="select">
+                <div class="select"
+                >
                 <select>
                     <option>Select dropdown</option>
                     <option>With options</option>
@@ -13,6 +16,8 @@
                 </div>
             </div>
             </div>
+            </div>
+                <div class="column">
                 <label class="label">Horario</label>
                         <label class="radio">
                         <input type="radio" name="rsvp">
@@ -24,8 +29,10 @@
                     </label>
                     <label class="radio" >
                         <input type="radio" name="rsvp" >
-                        Freelance
+                    Freelance
                     </label>
+                 </div> 
+            </div>
 
             <div class="field " >
                 <label class="label">Compañia</label>
@@ -34,22 +41,29 @@
             </div>
             </div>
 
-                <div class="file is-info has-name">
-                <label class="file-label"> 
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                    <span class="file-icon">
-                        <i class="fas fa-upload"></i>
-                    </span>
-                    <span class="file-label">
-                        Logo
-                    </span>
-                    </span>
-                    <span class="file-name">
-                    dsdfasdfasdfasdfasdfdsfadsfasdfaskdfaksdbfkjasdfjkasdfkjhasdkjfhaskjdfhaskjdhfajskdhfjaksdhfjkasdhfjaksdhfjkashdfjashdfjakshf
-                    </span>
-                </label>
-                </div>
+    
+    <b-field>
+      <b-upload v-model="file"  drag-drop expanded>
+        <section class="section">
+          <div class="content has-text-centered">
+            <p>
+              <b-icon icon="upload" size="is-large"></b-icon>
+            </p>
+            <p>Drop your files here or click to upload</p>
+          </div>
+        </section>
+      </b-upload>
+    </b-field>
+
+    <b-field class="file">
+      <b-upload v-model="file" expanded>
+        <a class="button is-info is-fullwidth">
+          <b-icon icon="upload"></b-icon>
+          <span>{{ file.name || "Click to upload"}}</span>
+        </a>
+      </b-upload>
+    </b-field>
+
 
             
 
@@ -94,13 +108,17 @@
 </template>
 
 <script lang="ts">
-import { Component,  Vue } from 'vue-property-decorator';
 
-
-@Component
-export default class Formulario extends Vue {
+export default  {
+  data() {
+    return {
+      file: {},
+      
+    };
   
+  }
 }
+
 </script>
 
 
@@ -122,5 +140,11 @@ export default class Formulario extends Vue {
     }
     div .field{
         margin-top:20px ;
+    }
+    .columns{
+        padding-left: 3%;
+    }
+    .column{
+        padding-left: 5%;
     }
 </style>
