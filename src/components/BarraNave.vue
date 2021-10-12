@@ -59,10 +59,19 @@
 
 <script lang="ts">
 import { Component, Vue  } from 'vue-property-decorator';
+import { UserService } from '@/core/services/user.service';
 
 @Component
 export default class BarraNave extends Vue {
- 
+ userSerice = new UserService();
+
+ async getAllUsers(){
+     let result = await this.userSerice.getAll();
+     return result;
+ }
+ mounted(){
+     console.log(this.getAllUsers);
+ }
 }
 </script>
 <style scoped lang="scss">
