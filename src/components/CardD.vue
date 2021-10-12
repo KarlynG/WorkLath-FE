@@ -8,9 +8,6 @@
   <div class="card-content">
     <div class="media">
       <div class="media-left">
-        <figure class="image">
-          <img src="@/assets/Tecno.jpg" style="width:50px;height:50px;" alt="Placeholder image">
-        </figure>
       </div>
     </div>
 

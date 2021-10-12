@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <div class="container">
+    <present/>
+    <div class="container align-items: center">
       <div class="container">
         <cards/>
         <cards/>
@@ -23,12 +24,14 @@ import { Component, Vue } from 'vue-property-decorator';
 import Cards from '@/components/Cards.vue';
 import CardProg from '@/components/CardP.vue';
 import CardDes from '@/components/CardD.vue';
+import Present from '@/components/Presentacion.vue'
 
 @Component({
   components: {
     Cards,
     CardProg,
-    CardDes
+    CardDes,
+    Present
   },
 })
 export default class Home extends Vue {}
