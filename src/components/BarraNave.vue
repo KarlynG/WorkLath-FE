@@ -13,11 +13,11 @@
         
 
         <template #end>
-            <b-navbar-item  href="#">
+            <b-navbar-item class="has-text-info"  href="#">
                 Todos los empleos
             </b-navbar-item>
-            <b-navbar-item href="#">
-            <router-link to="/about">Documentacion</router-link>
+            <b-navbar-item class="has-text-info" tag="router-link" :to="{ path: '/about' }">
+                        Documentacion
                 
             </b-navbar-item>
 
@@ -37,15 +37,36 @@
                         type="search"
                         icon="magnify"
                         icon-clickable
-                        @icon-click="searchIconClick">
+                      @icon-click="searchIconClick">
                     </b-input>
                     
                 </b-field>
             </b-navbar-item>
             <b-navbar-item tag="div">
-                <div class="buttons">
-                    <a class="button is-info">
-                        <strong>Nuevo Empleo</strong>
+                <div  class="buttons">
+                    <!--Inicio del sidebar del sidebar-->
+     <b-sidebar style="width : 40%"
+        
+      type="is-light"
+      :fullheight="fullheight"
+      :overlay="overlay"
+      :right="right"
+      v-model="open"
+      :width ="width"
+     
+
+      
+     
+    >
+      <div class="p-1 ">
+    
+        <b-menu>
+          <Formulario/>
+        </b-menu>
+      </div>
+    </b-sidebar> <!--Final del sidebar-->
+                    <a @click="open = true"  class="button is-info"  >
+                        <strong >Nuevo Empleo</strong>
                     </a>
                     <a class="button is-info is-light">     
                         Iniciar sesión
@@ -59,22 +80,33 @@
 
 <script lang="ts">
 import { Component, Vue  } from 'vue-property-decorator';
-import { UserService } from '@/core/services/user.service';
+import Formulario from '@/components/Formulario.vue';
 
-@Component
+@Component({
+  components: {
+    Formulario
+  },
+})
+
+
 export default class BarraNave extends Vue {
- userSerice = new UserService();
-
- async getAllUsers(){
-     let result = await this.userSerice.getAll();
-     return result;
- }
- mounted(){
-     console.log(this.getAllUsers);
- }
+ data() {
+    return {
+      open: false,
+      overlay: true,
+      fullheight: true,
+      right: true,
+      width : true
+      
+      
+    }
+  }
 }
+
 </script>
-<style scoped lang="scss">
+
+
+<style >
 .hero{
      padding: 30px;
 }
@@ -85,13 +117,22 @@ a:hover{
 a{
     color: black;
 }
-.field:focus{
-    background-color: yellow;
-    width: 250px;
+
+.p-1 {
+  padding: 1em;
+  
 }
-.field:in-range{
-    border: 2px solid yellow;
+.container .is-max-desktop{
+   width: 40%;
 }
+.b-sidebar .sidebar-content  {
+    width: 530px!important;
+}
+.select:not(.is-multiple):not(.is-loading)::after,
+.navbar-link:not(.is-arrowless)::after {
+    border-color: #167df0 !important;  
+} 
+
 
 </style>
 
