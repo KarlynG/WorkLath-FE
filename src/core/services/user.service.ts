@@ -1,12 +1,8 @@
-import { BaseService, IBaseService } from "./base.service";
-import {  User } from "../models/user.model";
+import { BaseService } from "./base.service";
+import {  User } from "../model";
 
-export interface IUserService extends IBaseService<User> {
-}
-
-export class UserService extends BaseService<User> implements IUserService {
-
-    constructor(controller: string = 'User') {
+export class UserService extends BaseService<User> {
+    constructor(controller = 'Users') {
         super(controller)
     }
 }
