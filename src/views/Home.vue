@@ -1,21 +1,6 @@
 <template>
   <div class="home">
-    <present/>
-    <div class="container align-items: center">
-      <div class="container">
-        <cards/>
-        <cards/>
-        <cards/>
-        <card-des/>
-        <hr>
-      </div>
-      <div class="container">
-        <cards/>
-        <cards/>
-        <cards/>
-        <card-prog/>
-      </div>
-    </div>
+    
   </div>
 </template>
 
