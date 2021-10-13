@@ -4,16 +4,22 @@
     <p class="has-text-white">
        El Proyecto consiste en un sitio web de una Bolsa de Empleos.
     </p>
-    
+    <button @click="getAllUsers()">Press me</button>
   </div>
 </footer>
 </template>
 
 <script lang="ts">
 import { Component,  Vue } from 'vue-property-decorator';
+import { UserService } from '@/core/services/user.service';
 
 @Component
 export default class PiePagina extends Vue {
+  userService = new UserService();
+  async getAllUsers(){
+    let result = await this.userService.getAll();
+    console.log(result.data.value);
+  }
   
 }
 </script>
@@ -23,9 +29,7 @@ export default class PiePagina extends Vue {
     .footer{
     background-color: #000000;
     padding: 3rem 1.5rem 6rem;
-    
     }
-    
     a{
     color: #167df0;
 }
