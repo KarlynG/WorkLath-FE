@@ -21,9 +21,9 @@ export default class PiePagina extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     .footer{
+      margin-top: 50px;
     background-color: #000000;
     padding: 3rem 1.5rem 6rem;
-    
     }
     
     a{

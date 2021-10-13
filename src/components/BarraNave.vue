@@ -68,9 +68,9 @@
                     <a @click="open = true"  class="button is-info"  >
                         <strong >Nuevo Empleo</strong>
                     </a>
-                    <a class="button is-info is-light">     
-                        Iniciar sesión
-                    </a>
+                          
+                    <router-link class="button is-info is-light" to="/login">Iniciar sesion </router-link>
+                    
                 </div>
             </b-navbar-item>
         </template>
