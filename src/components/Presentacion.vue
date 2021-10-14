@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 body {
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px;

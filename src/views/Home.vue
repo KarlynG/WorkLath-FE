@@ -23,7 +23,7 @@ export default class Home extends Vue {}
 
 </script>
 
-<style>
+<style scoped lang="scss">
 .container{
   width: 100%;
   height: 100%;
