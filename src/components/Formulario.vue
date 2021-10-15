@@ -1,15 +1,14 @@
 <template>
   <div class="container is-max-desktop">
-    <h1>Nuevo empleo</h1>
+    <h1>Publicar nuevo empleo</h1>
     <div class="columns">
       <div class="columns is-two-fifths">
         <div class="field">
           <label class="label">Categoria</label>
           <div class="control">
             <div class="select">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
+              <select disabled>
+                <option>{{postCategory}}</option>
               </select>
             </div>
           </div>
@@ -39,14 +38,13 @@
           label="Name"
           class="input is-info"
           type="text"
-          v-model="jobModel.company"
           placeholder="Compañia"
         />
       </div>
     </div>
 
     <b-field>
-      <b-upload v-model="file" drag-drop expanded>
+      <b-upload drag-drop expanded>
         <section class="section">
           <div class="content has-text-centered">
             <p>
@@ -59,10 +57,10 @@
     </b-field>
 
     <b-field class="file">
-      <b-upload v-model="file" expanded>
+      <b-upload expanded>
         <a class="button is-info is-fullwidth">
           <b-icon icon="upload"></b-icon>
-          <span>{{ file.name || "Click to upload" }}</span>
+          <span>Click to upload</span>
         </a>
       </b-upload>
     </b-field>
@@ -107,24 +105,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Job } from "@/core/model/jobs.model";
-import { JobService } from "@/core/services/job.service";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class FormJob extends Vue {
-  jobModel = new Job();
-  jobService = new JobService();
+  @Prop({default: '', required: true})
+  postCategory = '';
 
-  async createJob(){
-    let result = await this.jobService.post(this.jobModel);
-  }
+
 }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 .container {
   padding-left: 5%;
   padding-right: 5%;

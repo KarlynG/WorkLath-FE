@@ -33,33 +33,13 @@
               type="search"
               icon="magnify"
               icon-clickable
-              @icon-click="searchIconClick"
             >
             </b-input>
           </b-field>
         </b-navbar-item>
         <b-navbar-item tag="div">
           <div class="buttons">
-            <!--Inicio del sidebar del sidebar-->
-            <b-sidebar
-              style="width: 40%"
-              type="is-light"
-              :fullheight="fullheight"
-              :overlay="overlay"
-              :right="right"
-              v-model="open"
-              :width="width"
-            >
-              <div class="p-1">
-                <b-menu>
-                  <Formulario />
-                </b-menu>
-              </div>
-            </b-sidebar>
             <!--Final del sidebar-->
-            <a @click="open = true" class="button is-info">
-              <strong>Nuevo Empleo</strong>
-            </a>
             <a class="button is-info is-light"> Iniciar sesión </a>
           </div>
         </b-navbar-item>
@@ -78,15 +58,11 @@ import Formulario from "@/components/Formulario.vue";
   },
 })
 export default class BarraNave extends Vue {
-  data() {
-    return {
-      open: false,
-      overlay: true,
-      fullheight: true,
-      right: true,
-      width: true,
-    };
-  }
+  open = false;
+  overlay = true;
+  fullheight = true;
+  right = true;
+  width = true;
 }
 </script>
 
