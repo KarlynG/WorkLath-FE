@@ -11,6 +11,7 @@
     "axios": "^0.22.0",
     "buefy": "^0.9.10",
     "core-js": "^3.6.5",
+    "form-data": "^4.0.0",
     "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",

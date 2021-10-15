@@ -13,7 +13,7 @@
         <div class="column" v-for="(post, index) in first3Post" :key="index">
           <PostCard :post="post" />
         </div>
-        <div class="column">
+        <div class="column is-9">
           <AddPostCard />
         </div>
       </div>

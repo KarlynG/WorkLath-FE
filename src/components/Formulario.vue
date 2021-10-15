@@ -8,7 +8,7 @@
           <div class="control">
             <div class="select">
               <select disabled>
-                <option>{{ postCategory }}</option>
+                <option :value="0">{{ postCategory }}</option>
               </select>
             </div>
           </div>
@@ -16,18 +16,15 @@
       </div>
       <div class="column">
         <label class="label">Horario</label>
-        <label class="radio">
-          <input type="radio" name="rsvp" />
+        <b-radio v-model="postModel.horario" name="name" native-value="Flint">
           Full time
-        </label>
-        <label class="radio">
-          <input type="radio" name="rsvp" />
-          Part Time
-        </label>
-        <label class="radio">
-          <input type="radio" name="rsvp" />
+        </b-radio>
+        <b-radio v-model="postModel.horario" name="name" native-value="Silver">
+          Part time
+        </b-radio>
+        <b-radio v-model="postModel.horario" name="name" native-value="Jack">
           Freelance
-        </label>
+        </b-radio>
       </div>
     </div>
 
@@ -35,6 +32,7 @@
       <label class="label">Compañia</label>
       <div class="control">
         <input
+          v-model="postModel.company"
           label="Name"
           class="input is-info"
           type="text"
@@ -68,7 +66,12 @@
       <div class="field">
         <label class="label">URL</label>
         <div class="control">
-          <input class="input is-info" type="text" placeholder="URL" />
+          <input
+            class="input is-info"
+            type="text"
+            placeholder="URL"
+            v-model="postModel.url"
+          />
         </div>
       </div>
 
@@ -79,7 +82,7 @@
             class="input is-info"
             type="text"
             placeholder="Posición"
-            v-model="jobModel.position"
+            v-model="postModel.position"
           />
         </div>
       </div>
@@ -91,7 +94,7 @@
             class="input is-info"
             type="text"
             placeholder="Localización"
-            v-model="jobModel.location"
+            v-model="postModel.location"
           />
         </div>
       </div>
@@ -102,16 +105,14 @@
           <textarea
             class="textarea is-info"
             placeholder="Textarea"
-            v-model="jobModel.description"
+            v-model="postModel.description"
           ></textarea>
         </div>
       </div>
 
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-info" @click.prevent="createJob()">
-            Enviar
-          </button>
+          <button class="button is-info" @click="createJob()">Enviar</button>
         </div>
         <div class="control">
           <button class="button is-info is-light" expanded>Cancelar</button>
@@ -123,11 +124,24 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Post } from "@/core/model/post.model";
+import { PostService } from "@/core/services";
 
 @Component
 export default class FormJob extends Vue {
   @Prop({ default: "", required: true })
   postCategory = "";
+
+  postService = new PostService();
+  postModel = new Post();
+
+  async createJob() {
+    let result = await this.postService.post(this.postModel);
+    this.$buefy.toast.open({
+      message: "Se agrego el post!",
+      type: "is-success",
+    });
+  }
 }
 </script>
 

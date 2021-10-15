@@ -1,7 +1,7 @@
 <template>
-  <div class="cardPost is-pointer">
+  <div class="cardPost">
     <div class="card card-style-post">
-      <div class="card-content">
+      <div class="card-content is-pointer">
         <div class="content">
           <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
           <div @click="changeOpenState()">

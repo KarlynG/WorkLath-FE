@@ -13,14 +13,14 @@ export interface IBaseEntity extends IBase {
 
 export class Base implements IBase {
     id?: number = 0;
-    deleted: boolean ;
+    deleted = true ;
 }
 
 export class BaseEntity extends Base implements IBaseEntity {
     deletedDate?: string;
     createdDate?: string;
     updatedDate?: string;
-    createdBy: string ;
-    deletedBy: string ;
-    updatedBy: string ;
+    createdBy = '';
+    deletedBy = '' ;
+    updatedBy = '' ;
 }
