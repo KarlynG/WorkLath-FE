@@ -19,15 +19,16 @@
                 <div class="column">
                   <label class="label">Horario</label>
                   <label class="radio">
-                    <input type="radio" name="rsvp" />
+                    <input type="radio" 
+                    name="category" />
                     Full time
                   </label>
                   <label class="radio">
-                    <input type="radio" name="rsvp" />
+                    <input type="radio" name="category" />
                     Part Time
                   </label>
                   <label class="radio">
-                    <input type="radio" name="rsvp" />
+                    <input type="radio" name="category" />
                     Freelance
                   </label>
                 </div>
@@ -47,7 +48,7 @@
               </div>
 
               <b-field>
-                <b-upload v-model="file" drag-drop expanded>
+                <b-upload  drag-drop expanded>
                   <section class="section">
                     <div class="content has-text-centered">
                       <p>
@@ -60,10 +61,10 @@
               </b-field>
 
               <b-field class="file">
-                <b-upload v-model="file" expanded>
+                <b-upload  expanded>
                   <a class="button is-info is-fullwidth">
                     <b-icon icon="upload"></b-icon>
-                    <span>{{ file.name || "Click to upload" }}</span>
+                    <span>{{ "Click to upload" }}</span>
                   </a>
                 </b-upload>
               </b-field>
@@ -71,34 +72,45 @@
               <div class="field">
                 <label class="label">URL</label>
                 <div class="control">
-                  <input class="input is-info" type="text" placeholder="URL" />
+                  <input class="input is-info" 
+                  type="text" 
+                  placeholder="URL"
+                   />
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">Posición</label>
                 <div class="control">
-                  <input class="input is-info" type="text" placeholder="Posición" />
+                  <input class="input is-info"
+                   type="text"
+                    placeholder="Posición"
+                    v-model="jobModel.position" />
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">Localización</label>
                 <div class="control">
-                  <input class="input is-info" type="email" placeholder="Localización" />
+                  <input class="input is-info" 
+                  type="text" 
+                  placeholder="Localización" 
+                  v-model="jobModel.location"/>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">Descripción</label>
                 <div class="control">
-                  <textarea class="textarea is-info" placeholder="Textarea"></textarea>
+                  <textarea class="textarea is-info" 
+                  placeholder="Textarea"
+                  v-model="jobModel.description"></textarea>
                 </div>
               </div>
 
               <div class="field is-grouped">
                 <div class="control">
-                  <button class="button is-info">Enviar</button>
+                  <button class="button is-info" @click.prevent="createJob()">Enviar</button>
                 </div>
                 <div class="control">
                   <button class="button is-info is-light" expanded>Cancelar</button>
@@ -112,15 +124,18 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Job } from "@/core/model/jobs.model";
 import { JobService } from "@/core/services/job.service";
-
+import {Category} from "@/core/model/jobs.model";
 @Component
 export default class FormJob extends Vue {
+  
   jobModel = new Job();
+  
   jobService = new JobService();
 
   async createJob(){
     let result = await this.jobService.post(this.jobModel);
   }
+  
 }
 </script>
 

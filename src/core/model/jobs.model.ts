@@ -2,10 +2,11 @@ import { BaseEntity } from "./base.model";
 export class Job extends BaseEntity {
     category:Category = Category.Desarrolador;
     Horario:Horario = Horario.Freelance;
-    company:string ;
+    company:string  ;
     photoId?:number = 0;
     photo?:DocumentType;
     url:string ;
+    position:string;
     location:string ;
     description:string ;
 }
