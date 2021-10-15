@@ -8,7 +8,7 @@
           <div class="control">
             <div class="select">
               <select disabled>
-                <option>{{postCategory}}</option>
+                <option>{{ postCategory }}</option>
               </select>
             </div>
           </div>
@@ -64,41 +64,58 @@
         </a>
       </b-upload>
     </b-field>
-
-    <div class="field">
-      <label class="label">URL</label>
-      <div class="control">
-        <input class="input is-info" type="text" placeholder="URL" />
+    <div>
+      <div class="field">
+        <label class="label">URL</label>
+        <div class="control">
+          <input class="input is-info" type="text" placeholder="URL" />
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Posición</label>
-      <div class="control">
-        <input class="input is-info" type="text" placeholder="Posición" />
+      <div class="field">
+        <label class="label">Posición</label>
+        <div class="control">
+          <input
+            class="input is-info"
+            type="text"
+            placeholder="Posición"
+            v-model="jobModel.position"
+          />
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Localización</label>
-      <div class="control">
-        <input class="input is-info" type="email" placeholder="Localización" />
+      <div class="field">
+        <label class="label">Localización</label>
+        <div class="control">
+          <input
+            class="input is-info"
+            type="text"
+            placeholder="Localización"
+            v-model="jobModel.location"
+          />
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Descripción</label>
-      <div class="control">
-        <textarea class="textarea is-info" placeholder="Textarea"></textarea>
+      <div class="field">
+        <label class="label">Descripción</label>
+        <div class="control">
+          <textarea
+            class="textarea is-info"
+            placeholder="Textarea"
+            v-model="jobModel.description"
+          ></textarea>
+        </div>
       </div>
-    </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-info">Enviar</button>
-      </div>
-      <div class="control">
-        <button class="button is-info is-light" expanded>Cancelar</button>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-info" @click.prevent="createJob()">
+            Enviar
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-info is-light" expanded>Cancelar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -109,10 +126,8 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class FormJob extends Vue {
-  @Prop({default: '', required: true})
-  postCategory = '';
-
-
+  @Prop({ default: "", required: true })
+  postCategory = "";
 }
 </script>
 

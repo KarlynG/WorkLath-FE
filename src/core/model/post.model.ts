@@ -7,7 +7,7 @@ export class Post extends BaseEntity {
     photoId?:number = 0;
     photo?:DocumentType;
     url:string = '';
-    location:string = '';
+    location:string  = '';
     description:string = '';
 }
 
