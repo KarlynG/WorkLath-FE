@@ -22,7 +22,7 @@
         >
           <div class="p-1">
             <b-menu>
-              <Formulario :postCategory="'Desarrollador'" @add="changeOpenState()" />
+              <Formulario :jobId="jobId" :postCategory="'Desarrollador'" @add="changeOpenState()" />
             </b-menu>
           </div>
         </b-sidebar>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import Formulario from "@/components/Formulario.vue";
 @Component({
   components: {
@@ -40,6 +40,9 @@ import Formulario from "@/components/Formulario.vue";
   },
 })
 export default class CardHome extends Vue {
+  @Prop({ default: 0, required: true })
+  jobId = 0;
+
   isOpen = false;
   changeOpenState(state:boolean) {
     this.isOpen = state;

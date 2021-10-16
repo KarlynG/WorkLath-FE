@@ -1,20 +1,23 @@
 <template>
   <div class="home center">
-    <div class="box">
-      <b-icon
-        class="is-pulled-left"
-        icon="view-dashboard"
-        size="is-large"
-        type="is-info"
-      >
-      </b-icon>
-      <p class="subtitle is-3">&nbsp; Desarrollo</p>
-      <div class="columns">
-        <div class="column" v-for="(post, index) in first3Post" :key="index">
-          <PostCard :post="post" />
-        </div>
-        <div class="column">
-          <AddPostCard class="is-pulled-right" />
+    <div v-for="(job, index) in allJobs" :key="index">
+      <div class="box mt-5">
+        <b-icon
+          class="is-pulled-left"
+          icon="view-dashboard"
+          size="is-large"
+          type="is-info"
+        >
+        </b-icon>
+        <p class="subtitle is-3">&nbsp; {{ job.name }}</p>
+        <div class="columns">
+          <div class="column" v-for="(post, index) in job.posts" :key="index">
+            <PostCard :post="post" />
+          </div>
+          <div class="column">
+            {{job.id}}
+            <AddPostCard :jobId="job.id" class="is-pulled-right" />
+          </div>
         </div>
       </div>
     </div>
@@ -25,8 +28,9 @@
 import AddPostCard from "@/components/CardsPostHome/add-post-card.vue";
 import PostCard from "@/components/CardsPostHome/post-card.vue";
 import { Component, Vue } from "vue-property-decorator";
-import {PostService} from "@/core/services/post.service";
-import { Post } from "@/core/model";
+import { PostService } from "@/core/services/post.service";
+import { Job, Post } from "@/core/model";
+import { JobService } from "@/core/services";
 
 @Component({
   components: {
@@ -36,14 +40,14 @@ import { Post } from "@/core/model";
 })
 export default class Home extends Vue {
   postService = new PostService();
-  postList:Post[] = [];
-  first3Post:Post[] = [];
+  first3Post: Post[] = [];
 
-  async created(){
-    let result = await this.postService.getAll();
-    console.log(result);
-    this.postList = result.data.value;
-    this.first3Post = this.postList.slice(0, 3);
+  jobService = new JobService();
+  allJobs: Job[] = [];
+
+  async created() {
+    let jobResult = await this.jobService.getAll();
+    this.allJobs = jobResult.data.value;
   }
 }
 </script>

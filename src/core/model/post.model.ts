@@ -11,6 +11,7 @@ export class Post extends BaseEntity {
     url = '';
     location  = '';
     description = '';
+    jobId = 0;
 }
 
 export enum Category{
