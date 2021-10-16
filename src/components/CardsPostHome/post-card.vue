@@ -36,7 +36,7 @@ export default class CardPostHome extends Vue {
 }
 </script>
 
-<style>
+<style >
 .card-style {
   max-width: 20rem;
   min-height: 25rem;

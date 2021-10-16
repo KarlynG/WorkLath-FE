@@ -29,6 +29,7 @@
         <b-navbar-item tag="div">
           <b-field type="is-info span-none">
             <b-input
+            class="pb-4"
               placeholder="Buscar..."
               type="search"
               icon="magnify"
@@ -86,7 +87,7 @@ a {
   width: 40%;
 }
 .b-sidebar .sidebar-content {
-  width: 530px !important;
+  width: 580px !important;
 }
 .select:not(.is-multiple):not(.is-loading)::after,
 .navbar-link:not(.is-arrowless)::after {
