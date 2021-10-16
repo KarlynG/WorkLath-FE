@@ -17,6 +17,7 @@
         </div>
     </div>
     <div v-else v-for="(job, index) in allJobs" :key="index">
+      
       <div class="box mt-5">
         <b-icon
           class="is-pulled-left"
@@ -28,7 +29,7 @@
         <p class="subtitle is-3">&nbsp; {{ job.name }}</p>
         <div class="columns">
           <div class="column" v-for="(post, index) in job.posts" :key="index">
-            <PostCard :post="post" />
+            <PostCard  :post="post" />
           </div>
           <div class="column">
             <AddPostCard :id="job.id" class="is-pulled-right jobId" />
@@ -62,12 +63,15 @@ export default class Home extends Vue {
 
   jobService = new JobService();
   allJobs: Job[] = [];
+  
+  
 
   async created() {
     this.$store.commit('hideNavbarAndFooter', false);
     let jobResult = await this.jobService.getAll();
     this.allJobs = jobResult.data.value;
     this.isLoading = false;
+
   }
 }
 </script>
