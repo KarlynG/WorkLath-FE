@@ -1,9 +1,12 @@
 <template>
-  <div class="container is-max-desktop">
-    <h1>Publicar nuevo empleo</h1>
-    <div class="columns">
-      <div class="columns is-two-fifths">
-        <div class="field">
+  <div class="card ">
+    <div class="card-content ">
+      <div class="container has-background-white-ter">
+        <form action="">
+          <h1 class="pt-2 pb-4 is-size-3 ">Publicar nuevo empleo</h1>
+          <div class="columns  ">
+            <div class="column p-0  is-two-fifths">
+              <div class="field">
           <label class="label">Categoria</label>
           <div class="control">
             <div class="select">
@@ -24,6 +27,9 @@
         </b-radio>
         <b-radio v-model="postModel.horario" name="name" native-value="Jack">
           Freelance
+        </b-radio>
+        <b-radio v-model="postModel.horario" name="name" native-value="Jack">
+          From home
         </b-radio>
       </div>
     </div>
@@ -127,6 +133,10 @@
         </div>
       </div>
     </div>
+    </form>
+  </div>
+  
+    </div>
   </div>
 </template>
 
@@ -137,11 +147,15 @@ import { FileService, PostService } from "@/core/services";
 
 @Component
 export default class FormJob extends Vue {
+  postModel = new Post();
+  postService = new PostService();
+
+  async createPost() {
+    let result = await this.postService.post(this.postModel);
+    console.log("Post posteado");
+  }
   @Prop({ default: "", required: true })
   postCategory = "";
-
-  postService = new PostService();
-  postModel = new Post();
 
   //Upload file section
   uploading = false;
@@ -189,7 +203,6 @@ export default class FormJob extends Vue {
 }
 </script>
 
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .container {
@@ -197,21 +210,8 @@ export default class FormJob extends Vue {
   padding-right: 5%;
   padding-bottom: 40px;
 }
-.checkbox {
-  padding-left: 10px;
-}
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 5px;
-}
 div .field {
   margin-top: 20px;
-}
-.columns {
-  padding-left: 3%;
-}
-.column {
-  padding-left: 5%;
 }
 </style>

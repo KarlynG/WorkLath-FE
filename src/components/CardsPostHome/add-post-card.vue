@@ -6,7 +6,7 @@
           <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
           <div @click="changeOpenState(true)">
             <b-icon
-              style="margin-top: 7rem; margin-left: 7rem"
+              class="center-icon"
               icon="plus"
               size="is-large"
               type="is-primary"
@@ -48,7 +48,7 @@ export default class CardHome extends Vue {
 }
 </script>
 
-<style>
+<style >
 .card-style-post {
   max-width: 20rem;
   min-height: 25rem;
@@ -56,5 +56,9 @@ export default class CardHome extends Vue {
 }
 .is-pointer {
   cursor: pointer;
+}
+.center-icon{
+  margin-top: 7rem;
+   margin-left: 7rem;
 }
 </style>
