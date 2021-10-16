@@ -4,7 +4,7 @@
       <div class="card-content is-pointer">
         <div class="content">
           <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
-          <div @click="changeOpenState(true)">
+          <div @click="changeOpenState(true), getJobId($event)" id="1">
             <b-icon
               class="center-icon"
               icon="plus"
@@ -40,13 +40,13 @@ import Formulario from "@/components/Formulario.vue";
   },
 })
 export default class CardHome extends Vue {
-  @Prop({ default: 0, required: true })
   jobId = 0;
-
   isOpen = false;
   changeOpenState(state:boolean) {
     this.isOpen = state;
-    console.log(this.isOpen);
+  }
+  getJobId(event: any){
+    this.jobId = event.currentTarget.parentElement.parentElement.parentElement.parentElement.id;
   }
 }
 </script>

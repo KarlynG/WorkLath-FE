@@ -1,6 +1,22 @@
 <template>
   <div class="home center">
-    <div v-for="(job, index) in allJobs" :key="index">
+    <div v-if="isLoading" class="box mt-5">
+        <div class="columns">
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
+        </div>
+    </div>
+    <div v-else v-for="(job, index) in allJobs" :key="index">
       <div class="box mt-5">
         <b-icon
           class="is-pulled-left"
@@ -15,8 +31,7 @@
             <PostCard :post="post" />
           </div>
           <div class="column">
-            {{job.id}}
-            <AddPostCard :jobId="job.id" class="is-pulled-right" />
+            <AddPostCard :id="job.id" class="is-pulled-right jobId" />
           </div>
         </div>
       </div>
@@ -27,6 +42,7 @@
 <script lang="ts">
 import AddPostCard from "@/components/CardsPostHome/add-post-card.vue";
 import PostCard from "@/components/CardsPostHome/post-card.vue";
+import LoadingHome from "@/components/LoadingHome/loading-home.vue";
 import { Component, Vue } from "vue-property-decorator";
 import { PostService } from "@/core/services/post.service";
 import { Job, Post } from "@/core/model";
@@ -36,9 +52,11 @@ import { JobService } from "@/core/services";
   components: {
     AddPostCard,
     PostCard,
+    LoadingHome
   },
 })
 export default class Home extends Vue {
+  isLoading = true;
   postService = new PostService();
   first3Post: Post[] = [];
 
@@ -46,8 +64,10 @@ export default class Home extends Vue {
   allJobs: Job[] = [];
 
   async created() {
+    this.$store.commit('hideNavbarAndFooter', false);
     let jobResult = await this.jobService.getAll();
     this.allJobs = jobResult.data.value;
+    this.isLoading = false;
   }
 }
 </script>

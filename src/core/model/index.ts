@@ -1,14 +1,16 @@
 import { IBase, IBaseEntity } from "./base.model";
 import {IDocument} from "./document.model";
-import { User } from "./user.model";
+import { Users } from "./user.model";
 import {Post} from './post.model';
 import { Job } from './job.model';
+import { AuthenticateRequest } from './authenticateRequest.model';
 
 export {
     IBase,
     IBaseEntity,
     IDocument,
-    User,
+    Users,
     Post,
-    Job
+    Job,
+    AuthenticateRequest
 }

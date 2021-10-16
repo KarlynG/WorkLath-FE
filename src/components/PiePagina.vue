@@ -2,9 +2,8 @@
   <footer class="footer">
     <div class="content has-text-centered">
       <p class="has-text-white">
-        El Proyecto consiste en un sitio web de una Bolsa de Empleos.
+        Bolsa de empleos. Copyright 2021-2021. <a>Grupo 5</a> <b>ITLA</b>
       </p>
-      <button @click="getAllUsers()">Press me</button>
     </div>
   </footer>
 </template>

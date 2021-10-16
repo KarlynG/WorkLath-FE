@@ -2,9 +2,9 @@
   <section class="hero">
     <b-navbar>
       <template #brand>
-        <b-navbar-item class="padding" tag="router-link" :to="{ path: '/' }">
+        <b-navbar-item class="padding" tag="router-link" :to="{ path: '/home' }">
           <img
-            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+            src="https://raw.githubusercontent.com/adriancast/Bulma-login-template/master/assets/img/logo_r_resumme.png"
             alt="Lightweight UI components for Vue.js based on Bulma"
           />
         </b-navbar-item>
@@ -39,10 +39,12 @@
           </b-field>
         </b-navbar-item>
         <b-navbar-item tag="div">
-          <div class="buttons">
-            <!--Final del sidebar-->
-            <a class="button is-info is-light"> Iniciar sesión </a>
-          </div>
+          <router-link
+              class="button is-vcentered is-primary is-outlined"
+              :to="`/`"
+            >
+              Cerrar sesion
+            </router-link>
         </b-navbar-item>
       </template>
     </b-navbar>

@@ -176,7 +176,7 @@ export default class FormJob extends Vue {
   @Prop({ default: "", required: true })
   postCategory = "";
 
-  @Prop({ default: 0, required: true })
+  @Prop({ default: 0})
   jobId = 0;
 
   //Upload file section
@@ -216,13 +216,12 @@ export default class FormJob extends Vue {
 
   async createJob() {
     this.postModel.jobId = this.jobId;
-    console.log(this.postModel.jobId);
-    // await this.postService.post(this.postModel);
-    // this.$emit("add", false);
-    // this.$buefy.toast.open({
-    //   message: "Post posteado!",
-    //   type: "is-success",
-    // });
+     await this.postService.post(this.postModel);
+     this.$emit("add", false);
+     this.$buefy.toast.open({
+       message: "Post posteado!",
+       type: "is-success",
+    });
   }
 }
 </script>
