@@ -1,20 +1,38 @@
 <template>
   <div class="home center">
-    <div class="box">
-      <b-icon
-        class="is-pulled-left"
-        icon="view-dashboard"
-        size="is-large"
-        type="is-info"
-      >
-      </b-icon>
-      <p class="subtitle is-3">&nbsp; Desarrollo</p>
-      <div class="columns">
-        <div class="column" v-for="(post, index) in first3Post" :key="index">
-          <PostCard :post="post" />
+    <div v-if="isLoading" class="box mt-5">
+        <div class="columns">
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
+          <div class="column">
+            <LoadingHome />
+          </div>
         </div>
-        <div class="column">
-          <AddPostCard />
+    </div>
+    <div v-else v-for="(job, index) in allJobs" :key="index">
+      <div class="box mt-5">
+        <b-icon
+          class="is-pulled-left"
+          icon="view-dashboard"
+          size="is-large"
+          type="is-info"
+        >
+        </b-icon>
+        <p class="subtitle is-3">&nbsp; {{ job.name }}</p>
+        <div class="columns">
+          <div class="column" v-for="(post, index) in job.posts" :key="index">
+            <PostCard :post="post" />
+          </div>
+          <div class="column">
+            <AddPostCard :id="job.id" class="is-pulled-right jobId" />
+          </div>
         </div>
       </div>
     </div>
@@ -24,25 +42,32 @@
 <script lang="ts">
 import AddPostCard from "@/components/CardsPostHome/add-post-card.vue";
 import PostCard from "@/components/CardsPostHome/post-card.vue";
+import LoadingHome from "@/components/LoadingHome/loading-home.vue";
 import { Component, Vue } from "vue-property-decorator";
-import {PostService} from "@/core/services/post.service";
-import { Post } from "@/core/model";
+import { PostService } from "@/core/services/post.service";
+import { Job, Post } from "@/core/model";
+import { JobService } from "@/core/services";
 
 @Component({
   components: {
     AddPostCard,
     PostCard,
+    LoadingHome
   },
 })
 export default class Home extends Vue {
+  isLoading = true;
   postService = new PostService();
-  postList:Post[] = [];
-  first3Post:Post[] = [];
+  first3Post: Post[] = [];
 
-  async created(){
-    let result = await this.postService.getAll();
-    this.postList = result.data.value;
-    this.first3Post = this.postList.slice(0, 3);
+  jobService = new JobService();
+  allJobs: Job[] = [];
+
+  async created() {
+    this.$store.commit('hideNavbarAndFooter', false);
+    let jobResult = await this.jobService.getAll();
+    this.allJobs = jobResult.data.value;
+    this.isLoading = false;
   }
 }
 </script>

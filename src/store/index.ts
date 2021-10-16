@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    hideNavbarAndFooter: true,
   },
   mutations: {
+    hideNavbarAndFooter(state, hide) {
+      state.hideNavbarAndFooter = hide;
+    },
   },
   actions: {
   },

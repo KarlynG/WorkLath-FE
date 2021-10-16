@@ -1,12 +1,12 @@
 <template>
-  <div class="cardPost is-pointer">
+  <div class="cardPost">
     <div class="card card-style-post">
-      <div class="card-content">
+      <div class="card-content is-pointer">
         <div class="content">
           <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
-          <div @click="changeOpenState()">
+          <div @click="changeOpenState(true), getJobId($event)" id="1">
             <b-icon
-              style="margin-top: 7rem; margin-left: 7rem"
+              class="center-icon"
               icon="plus"
               size="is-large"
               type="is-primary"
@@ -22,7 +22,7 @@
         >
           <div class="p-1">
             <b-menu>
-              <Formulario :postCategory="'Desarrollador'" />
+              <Formulario :jobId="jobId" :postCategory="'Desarrollador'" @add="changeOpenState()" />
             </b-menu>
           </div>
         </b-sidebar>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import Formulario from "@/components/Formulario.vue";
 @Component({
   components: {
@@ -40,15 +40,18 @@ import Formulario from "@/components/Formulario.vue";
   },
 })
 export default class CardHome extends Vue {
+  jobId = 0;
   isOpen = false;
-  changeOpenState() {
-    this.isOpen = true;
-    console.log(this.isOpen);
+  changeOpenState(state:boolean) {
+    this.isOpen = state;
+  }
+  getJobId(event: any){
+    this.jobId = event.currentTarget.parentElement.parentElement.parentElement.parentElement.id;
   }
 }
 </script>
 
-<style>
+<style >
 .card-style-post {
   max-width: 20rem;
   min-height: 25rem;
@@ -56,5 +59,9 @@ export default class CardHome extends Vue {
 }
 .is-pointer {
   cursor: pointer;
+}
+.center-icon{
+  margin-top: 7rem;
+   margin-left: 7rem;
 }
 </style>

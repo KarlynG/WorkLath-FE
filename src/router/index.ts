@@ -7,8 +7,18 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
+    name: 'Login',
+    component: () => import('../views/Login/Login.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/Login/Register.vue')
+  },
+  {
+    path: '/home',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/User/Home.vue')
+    component: () => import('../views/User/Home.vue')
   }
 ]
 
