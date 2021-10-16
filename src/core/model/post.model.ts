@@ -1,11 +1,13 @@
+import { IDocument } from ".";
 import { BaseEntity } from "./base.model";
 export class Post extends BaseEntity {
     category = Category.Desarrolador;
     horario = Horario.Freelance;
-    company = '';
+    companyName = '';
     position = '';
     photoId? = 0;
-    photo?:DocumentType;
+    photo?:IDocument;
+    photoFileName?: string;
     url = '';
     location  = '';
     description = '';

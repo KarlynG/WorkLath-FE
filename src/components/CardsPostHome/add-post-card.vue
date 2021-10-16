@@ -4,7 +4,7 @@
       <div class="card-content is-pointer">
         <div class="content">
           <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
-          <div @click="changeOpenState()">
+          <div @click="changeOpenState(true)">
             <b-icon
               style="margin-top: 7rem; margin-left: 7rem"
               icon="plus"
@@ -22,7 +22,7 @@
         >
           <div class="p-1">
             <b-menu>
-              <Formulario :postCategory="'Desarrollador'" />
+              <Formulario :postCategory="'Desarrollador'" @add="changeOpenState()" />
             </b-menu>
           </div>
         </b-sidebar>
@@ -41,8 +41,8 @@ import Formulario from "@/components/Formulario.vue";
 })
 export default class CardHome extends Vue {
   isOpen = false;
-  changeOpenState() {
-    this.isOpen = true;
+  changeOpenState(state:boolean) {
+    this.isOpen = state;
     console.log(this.isOpen);
   }
 }

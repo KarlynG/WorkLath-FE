@@ -13,8 +13,8 @@
         <div class="column" v-for="(post, index) in first3Post" :key="index">
           <PostCard :post="post" />
         </div>
-        <div class="column is-9">
-          <AddPostCard />
+        <div class="column">
+          <AddPostCard class="is-pulled-right" />
         </div>
       </div>
     </div>
@@ -41,6 +41,7 @@ export default class Home extends Vue {
 
   async created(){
     let result = await this.postService.getAll();
+    console.log(result);
     this.postList = result.data.value;
     this.first3Post = this.postList.slice(0, 3);
   }

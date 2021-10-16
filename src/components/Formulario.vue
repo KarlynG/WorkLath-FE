@@ -32,7 +32,7 @@
       <label class="label">Compañia</label>
       <div class="control">
         <input
-          v-model="postModel.company"
+          v-model="postModel.companyName"
           label="Name"
           class="input is-info"
           type="text"
@@ -42,23 +42,31 @@
     </div>
 
     <b-field>
-      <b-upload drag-drop expanded>
+      <b-upload v-show="!successUpload" @input="selectFile" drag-drop expanded>
         <section class="section">
           <div class="content has-text-centered">
             <p>
               <b-icon icon="upload" size="is-large"></b-icon>
             </p>
-            <p>Drop your files here or click to upload</p>
+            <p>Arrastre un archivo o click para seleccionar</p>
           </div>
         </section>
       </b-upload>
+      <b-image
+        class="image-is-350x210"
+        v-show="successUpload"
+        :src="imageUrl"
+        alt="A random image"
+      ></b-image>
     </b-field>
-
     <b-field class="file">
-      <b-upload expanded>
-        <a class="button is-info is-fullwidth">
+      <b-upload @input="selectFile" expanded>
+        <b-button type="is-primary" expanded v-if="uploading" loading
+          >Subiendo...</b-button
+        >
+        <a v-else class="button is-primary is-fullwidth">
           <b-icon icon="upload"></b-icon>
-          <span>Click to upload</span>
+          <span>Cargar foto</span>
         </a>
       </b-upload>
     </b-field>
@@ -125,7 +133,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Post } from "@/core/model/post.model";
-import { PostService } from "@/core/services";
+import { FileService, PostService } from "@/core/services";
 
 @Component
 export default class FormJob extends Vue {
@@ -135,8 +143,44 @@ export default class FormJob extends Vue {
   postService = new PostService();
   postModel = new Post();
 
+  //Upload file section
+  uploading = false;
+  successUpload = false;
+  errorUpload = false;
+  fileService = new FileService();
+  imageUrl = require("@/assets/logo.png");
+
+  async selectFile(selected: File) {
+    try {
+      this.uploading = true;
+      const document = await this.fileService.upload(selected);
+      this.postModel.photo = document.data;
+      this.imageUrl = this.fileService.getPublicUrl(
+        this.postModel.photo.fileName,
+        this.postModel.photo.contentType
+      );
+      this.successUpload = true;
+    } catch (error) {
+      this.errorUpload = true;
+      this.imageUrl = require("@/assets/logo.png");
+      this.operationFailed("Error al enviar foto al servidor");
+    } finally {
+      this.uploading = false;
+    }
+  }
+
+  operationFailed(message = "Operación fallída!", duration = 4000) {
+    this.$buefy.toast.open({
+      message: message,
+      type: "is-danger",
+      position: "is-top-right",
+      duration: duration,
+    });
+  }
+
   async createJob() {
     let result = await this.postService.post(this.postModel);
+    this.$emit("add", false);
     this.$buefy.toast.open({
       message: "Se agrego el post!",
       type: "is-success",
