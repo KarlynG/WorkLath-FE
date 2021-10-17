@@ -7,6 +7,11 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
+    name: 'HomeRoot',
+    component: () => import('../views/User/Home.vue')
+  },
+  {
+    path: '/login',
     name: 'Login',
     component: () => import('../views/Login/Login.vue')
   },
@@ -18,7 +23,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('../views/User/Home.vue')
+    component: () => import('../views/User/Home.vue'),
+  },
+  {
+    path: '/job/:id',
+    name: 'JobTable',
+    component: () => import('../views/User/JobTable.vue'),
   }
 ]
 

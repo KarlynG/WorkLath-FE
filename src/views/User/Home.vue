@@ -17,7 +17,7 @@
         </div>
     </div>
     <div v-else v-for="(job, index) in allJobs" :key="index">
-      <div class="box mt-5">
+      <div class="box mt-5" style="min-height: 10rem;">
         <b-icon
           class="is-pulled-left"
           icon="view-dashboard"
@@ -25,12 +25,12 @@
           type="is-info"
         >
         </b-icon>
-        <p class="subtitle is-3">&nbsp; {{ job.name }}</p>
+        <router-link class="subtitle is-3" :to="`/job/${job.id}`">&nbsp; {{ job.name }}</router-link>
         <div class="columns">
           <div class="column" v-for="(post, index) in job.posts" :key="index">
             <PostCard :post="post" />
           </div>
-          <div class="column">
+          <div class="column" v-if="isLoggedIn">
             <AddPostCard :id="job.id" class="is-pulled-right jobId" />
           </div>
         </div>
@@ -62,6 +62,10 @@ export default class Home extends Vue {
 
   jobService = new JobService();
   allJobs: Job[] = [];
+
+  get isLoggedIn() {
+    return this.$store.state.isLoggedIn;
+  }
 
   async created() {
     this.$store.commit('hideNavbarAndFooter', false);

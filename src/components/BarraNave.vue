@@ -2,7 +2,11 @@
   <section class="hero">
     <b-navbar>
       <template #brand>
-        <b-navbar-item class="padding" tag="router-link" :to="{ path: '/home' }">
+        <b-navbar-item
+          class="padding"
+          tag="router-link"
+          :to="{ path: '/home' }"
+        >
           <img
             src="https://raw.githubusercontent.com/adriancast/Bulma-login-template/master/assets/img/logo_r_resumme.png"
             alt="Lightweight UI components for Vue.js based on Bulma"
@@ -29,7 +33,7 @@
         <b-navbar-item tag="div">
           <b-field type="is-info span-none">
             <b-input
-            class="pb-4"
+              class="pb-4"
               placeholder="Buscar..."
               type="search"
               icon="magnify"
@@ -40,11 +44,24 @@
         </b-navbar-item>
         <b-navbar-item tag="div">
           <router-link
-              class="button is-vcentered is-primary is-outlined"
-              :to="`/`"
-            >
-              Cerrar sesion
-            </router-link>
+            class="button is-vcentered is-primary is-outlined"
+            :to="`/login`"
+            v-if="!isLoggedIn"
+          >
+            Iniciar sesion
+          </router-link>
+          <b-dropdown v-else :triggers="['hover']" aria-role="list">
+            <template #trigger>
+                <b-button
+                    :label="username"
+                    type="is-info"
+                    icon-right="menu-down" />
+            </template>
+
+            <b-dropdown-item aria-role="listitem">Ver perfil</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">Configuración</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem" @click="goHome()">Cerrar sesion</b-dropdown-item>
+        </b-dropdown>
         </b-navbar-item>
       </template>
     </b-navbar>
@@ -66,6 +83,18 @@ export default class BarraNave extends Vue {
   fullheight = true;
   right = true;
   width = true;
+
+  get isLoggedIn() {
+    return this.$store.state.isLoggedIn;
+  }
+
+  get username(){
+    return this.$store.state.username;
+  }
+
+  goHome(){
+    this.$store.commit("isLoggedIn", false);
+  }
 }
 </script>
 

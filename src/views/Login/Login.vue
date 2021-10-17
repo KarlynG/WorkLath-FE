@@ -38,7 +38,12 @@
             </div>
           </div>
           <div class="has-text-centered">
-            <a
+            <b-button v-if="uploading" loading
+              class="button is-vcentered is-primary is-outlined"
+            >
+              Cargando
+            </b-button>
+            <a v-else
               class="button is-vcentered is-primary is-outlined"
               @click="logUser()"
             >
@@ -66,12 +71,16 @@ import { Component, Vue } from "vue-property-decorator";
 export default class LoginView extends Vue {
   authenticateModel = new AuthenticateRequest();
   userService = new UserService();
+  uploading = false;
   created() {
     this.$store.commit("hideNavbarAndFooter", true);
   }
   async logUser() {
     try {
+      this.uploading = true;
       await this.userService.authenticateUser(this.authenticateModel);
+      this.$store.commit("isLoggedIn", true);
+      this.$store.commit("username", this.authenticateModel.username);
       this.$router.push({ name: 'Home' })
     } catch (e) {
       this.$buefy.toast.open({
@@ -80,6 +89,8 @@ export default class LoginView extends Vue {
         position: "is-top",
         type: "is-danger",
       });
+    }finally {
+      this.uploading = false;
     }
   }
 }

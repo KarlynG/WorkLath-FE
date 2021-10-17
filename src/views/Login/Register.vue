@@ -56,7 +56,7 @@
           </div>
           <div class="has-text-centered">
             <router-link
-              :to="`/`"
+              :to="`/login`"
             >
               Ya tienes cuenta? Ingresa aquí
             </router-link>
