@@ -1,26 +1,26 @@
 <template>
   <div class="home center">
     <div v-if="isLoading" class="box mt-5">
-        <div class="columns">
-          <div class="column">
-            <LoadingHome />
-          </div>
-          <div class="column">
-            <LoadingHome />
-          </div>
-          <div class="column">
-            <LoadingHome />
-          </div>
-          <div class="column">
-            <LoadingHome />
-          </div>
+      <div class="columns">
+        <div class="column">
+          <LoadingHome />
         </div>
+        <div class="column">
+          <LoadingHome />
+        </div>
+        <div class="column">
+          <LoadingHome />
+        </div>
+        <div class="column">
+          <LoadingHome />
+        </div>
+      </div>
+    </div>
+    <div v-if="!allJobs.length">
+      <h2 class="subtitle has-text-centered">No se encontraron categorías</h2>
     </div>
     <div v-else v-for="(job, index) in allJobs" :key="index">
-      <div v-if="job.length">
-        <h2 class="subtitle has-text-centered">No se encontraron categorías</h2>
-      </div>
-      <div v-else class="box mt-5" style="min-height: 10rem;">
+      <div class="box mt-5" style="min-height: 10rem">
         <b-icon
           class="is-pulled-left"
           icon="view-dashboard"
@@ -28,10 +28,12 @@
           type="is-info"
         >
         </b-icon>
-        <router-link class="subtitle is-3" :to="`/job/${job.id}`">&nbsp; {{ job.name }}</router-link>
+        <router-link class="subtitle is-3" :to="`/job/${job.id}`"
+          >&nbsp; {{ job.name }}</router-link
+        >
         <div class="columns">
           <div class="column" v-for="(post, index) in job.posts" :key="index">
-            <PostCard  :post="post" />
+            <PostCard :post="post" />
           </div>
           <div class="column" v-if="isLoggedIn">
             <AddPostCard :id="job.id" class="is-pulled-right jobId" />
@@ -55,7 +57,7 @@ import { JobService } from "@/core/services";
   components: {
     AddPostCard,
     PostCard,
-    LoadingHome
+    LoadingHome,
   },
 })
 export default class Home extends Vue {
@@ -65,19 +67,17 @@ export default class Home extends Vue {
 
   jobService = new JobService();
   allJobs: Job[] = [];
-  
-  
 
   get isLoggedIn() {
     return this.$store.state.isLoggedIn;
   }
 
   async created() {
-    this.$store.commit('hideNavbarAndFooter', false);
+    this.$store.commit("hideNavbarAndFooter", false);
     let jobResult = await this.jobService.getAll();
     this.allJobs = jobResult.data.value;
+    console.log(this.allJobs.length);
     this.isLoading = false;
-
   }
 }
 </script>
