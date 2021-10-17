@@ -28,7 +28,7 @@
         <router-link class="subtitle is-3" :to="`/job/${job.id}`">&nbsp; {{ job.name }}</router-link>
         <div class="columns">
           <div class="column" v-for="(post, index) in job.posts" :key="index">
-            <PostCard :post="post" />
+            <PostCard  :post="post" />
           </div>
           <div class="column" v-if="isLoggedIn">
             <AddPostCard :id="job.id" class="is-pulled-right jobId" />
@@ -62,6 +62,8 @@ export default class Home extends Vue {
 
   jobService = new JobService();
   allJobs: Job[] = [];
+  
+  
 
   get isLoggedIn() {
     return this.$store.state.isLoggedIn;
@@ -72,6 +74,7 @@ export default class Home extends Vue {
     let jobResult = await this.jobService.getAll();
     this.allJobs = jobResult.data.value;
     this.isLoading = false;
+
   }
 }
 </script>

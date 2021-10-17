@@ -1,5 +1,5 @@
 <template>
-  <div class="card is-pointer card-style">
+  <div class="card is-pointer card-style ">
     <div class="card-image">
       <div v-if="!post.photoId">
         <figure class="image is-4by3">
@@ -15,7 +15,7 @@
         </figure>
       </div>
     </div>
-    <div class="card-content">
+    <div class="card-content" @click="isCardModalActive = true" >
       <div class="media">
         <div class="media-content">
           <p class="title is-4">{{ post.position }}</p>
@@ -24,9 +24,15 @@
       </div>
 
       <div class="content">
-        {{ post.description }}
+        {{ post.description }} 
       </div>
     </div>
+    
+    <b-modal v-model="isCardModalActive" scroll="keep">
+            <CardModalHome :post="post"  />
+        </b-modal>
+    
+      
   </div>
 </template>
 
@@ -35,12 +41,15 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import Formulario from "@/components/Formulario.vue";
 import { Post } from "@/core/model";
 import { FileService } from "@/core/services";
+import CardModalHome from "./modal-card.vue";
 @Component({
   components: {
     Formulario,
+    CardModalHome
   },
 })
 export default class CardPostHome extends Vue {
+  isCardModalActive = false;
   @Prop({ default: "", required: true })
   post?: Post;
 
@@ -51,7 +60,7 @@ export default class CardPostHome extends Vue {
 }
 </script>
 
-<style >
+<style>
 .card-style {
   max-width: 20rem;
   min-height: 25rem;
@@ -59,5 +68,8 @@ export default class CardPostHome extends Vue {
 }
 .is-pointer {
   cursor: pointer;
+}
+.modal .modal-content {
+    width: 50%;
 }
 </style>

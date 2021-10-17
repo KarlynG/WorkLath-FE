@@ -9,7 +9,7 @@
         >
           <img
             src="https://raw.githubusercontent.com/adriancast/Bulma-login-template/master/assets/img/logo_r_resumme.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
+         alt="Lightweight UI components for Vue.js based on Bulma"
           />
         </b-navbar-item>
       </template>
