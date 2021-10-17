@@ -2,7 +2,7 @@ import { IDocument } from ".";
 import { BaseEntity } from "./base.model";
 export class Post extends BaseEntity {
     category = Category.Desarrolador;
-    horario = Horario.Freelance;
+    schedule = Schedule.Freelance;
     companyName = '';
     position = '';
     photoId? = 0;
@@ -20,8 +20,9 @@ export enum Category{
     Tecnologia
 }
 
-export enum Horario {
+export enum Schedule {
     FullTime = 1,
     PartTime,
-    Freelance
+    Freelance,
+    FromHome
 }

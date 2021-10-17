@@ -2,7 +2,7 @@
   <div class="jobTable">
     <div class="card center workshop-list">
       <div class="card-content has-text-centered">
-        <h1 class="title">Todos los trabajos</h1>
+        <h1 class="title">Ver todos los post</h1>
         <nav class="panel">
           <p class="panel-heading"></p>
           <div class="panel-block">
@@ -27,7 +27,7 @@
             class="panel-block is-active has-text-centered"
             v-if="!posts.length"
           >
-            No se encontraron trabajos
+            No se encontraron resultados
           </p>
           <a
             class="panel-block is-active"

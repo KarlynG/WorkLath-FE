@@ -3,7 +3,7 @@
     <div class="card card-style-post">
       <div class="card-content is-pointer">
         <div class="content">
-          <p class="subtitle is-4 has-text-centered mt-5">Agregar nuevo empleto</p>
+          <p class="subtitle is-4 has-text-centered mt-5">Nuevo post</p>
           <div @click="changeOpenState(true), getJobId($event)" id="1">
             <b-icon
               class="center-icon"
@@ -56,6 +56,7 @@ export default class CardHome extends Vue {
   max-width: 20rem;
   min-height: 25rem;
   max-height: 25rem;
+  min-width: 18rem;
 }
 .is-pointer {
   cursor: pointer;

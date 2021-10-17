@@ -20,30 +20,30 @@
             <div class="column">
               <label class="label">Horario</label>
               <b-radio
-                v-model="postModel.horario"
+                v-model="postModel.schedule"
                 name="name"
-                native-value="Flint"
+                :native-value="1"
               >
                 Full time
               </b-radio>
               <b-radio
-                v-model="postModel.horario"
+                v-model="postModel.schedule"
                 name="name"
-                native-value="Silver"
+                :native-value="2"
               >
                 Part time
               </b-radio>
               <b-radio
-                v-model="postModel.horario"
+                v-model="postModel.schedule"
                 name="name"
-                native-value="Jack"
+                :native-value="3"
               >
                 Freelance
               </b-radio>
               <b-radio
-                v-model="postModel.horario"
+                v-model="postModel.schedule"
                 name="name"
-                native-value="Jack"
+                :native-value="4"
               >
                 From home
               </b-radio>
@@ -176,7 +176,7 @@ export default class FormJob extends Vue {
   @Prop({ default: "", required: true })
   postCategory = "";
 
-  @Prop({ default: 0})
+  @Prop({ default: 0 })
   jobId = 0;
 
   //Upload file section
@@ -216,11 +216,11 @@ export default class FormJob extends Vue {
 
   async createJob() {
     this.postModel.jobId = this.jobId;
-     await this.postService.post(this.postModel);
-     this.$emit("add", false);
-     this.$buefy.toast.open({
-       message: "Post posteado!",
-       type: "is-success",
+    await this.postService.post(this.postModel);
+    this.$emit("add", false);
+    this.$buefy.toast.open({
+      message: "Post posteado!",
+      type: "is-success",
     });
   }
 }

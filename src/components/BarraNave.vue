@@ -15,32 +15,16 @@
       </template>
 
       <template #end>
-        <b-navbar-item class="has-text-info" href="#">
-          Todos los empleos
+        <b-navbar-item class="has-text-info" tag="router-link"
+          :to="{ path: '/' }">
+          Home
         </b-navbar-item>
         <b-navbar-item
           class="has-text-info"
           tag="router-link"
-          :to="{ path: '/about' }"
+          :to="{ path: '/' }"
         >
-          Documentacion
-        </b-navbar-item>
-
-        <b-navbar-dropdown label="Categoria">
-          <b-navbar-item href="#"> Web develer </b-navbar-item>
-          <b-navbar-item href="#"> Tester </b-navbar-item>
-        </b-navbar-dropdown>
-        <b-navbar-item tag="div">
-          <b-field type="is-info span-none">
-            <b-input
-              class="pb-4"
-              placeholder="Buscar..."
-              type="search"
-              icon="magnify"
-              icon-clickable
-            >
-            </b-input>
-          </b-field>
+          Ayuda
         </b-navbar-item>
         <b-navbar-item tag="div">
           <router-link

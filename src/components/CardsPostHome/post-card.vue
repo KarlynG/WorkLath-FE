@@ -1,6 +1,6 @@
 <template>
   <div class="card is-pointer card-style ">
-    <div class="card-image">
+    <div class="card-image" @click="isCardModalActive = true">
       <div v-if="!post.photoId">
         <figure class="image is-4by3">
           <img
