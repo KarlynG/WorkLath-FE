@@ -35,10 +35,13 @@
             v-for="(post, index) in flteredPosts"
             :key="index"
           >
-            <span class="panel-icon">
+            <span @click="changeState()" class="panel-icon">
               <i class="fas fa-book" aria-hidden="true"></i>
             </span>
             {{ post.position }}
+            <b-modal v-model="isCardModalActive" scroll="keep">
+            <CardModalHome :post="flteredPosts[index]"  />
+        </b-modal>
           </a>
         </nav>
       </div>
@@ -50,13 +53,23 @@
 import { Post } from "@/core/model";
 import { PostService } from "@/core/services";
 import { Component, Vue } from "vue-property-decorator";
+import CardModalHome from "@/components/CardsPostHome/modal-card.vue";
 
-@Component
+@Component({
+  components: {
+    CardModalHome
+  },
+})
 export default class JobTable extends Vue {
   postService = new PostService();
   posts: Post[] = [];
   jobId = parseInt(this.$route.params.id);
   search = "";
+
+  changeState(){
+    this.isCardModalActive = !this.isCardModalActive;
+  }
+  isCardModalActive = false;
 
   async created() {
     this.$store.commit("hideNavbarAndFooter", false);

@@ -1,32 +1,27 @@
 <template>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p class="has-text-white">
-        Bolsa de empleos. Copyright 2021-2021. <a>Grupo 5</a> <b>ITLA</b>
-      </p>
-    </div>
-  </footer>
+  <footer class="my-footer has-text-white" id="copyright">
+	Copyright 2020-<span id="current-year">2021</span>, <a href="#" target="_blank" rel="noopener noreferrer">Group 5. ITLA</a>. All right reserved.
+</footer>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { UserService } from "@/core/services/user.service";
 
 @Component
 export default class PiePagina extends Vue {
-  userService = new UserService();
-  async getAllUsers() {
-    let result = await this.userService.getAll();
-    console.log(result.data.value);
-  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.footer {
-  background-color: #000000;
-  padding: 3rem 1.5rem 6rem;
+<style lang="scss">
+.my-footer {
+  background: #2c2d35;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+	padding: 15.5px 10px;
+	z-index: 20;
+	font-size: .7rem;
+  transition: 0.2s all ease-out;
 }
 a {
   color: #167df0;

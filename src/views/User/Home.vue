@@ -17,7 +17,10 @@
         </div>
     </div>
     <div v-else v-for="(job, index) in allJobs" :key="index">
-      <div class="box mt-5" style="min-height: 10rem;">
+      <div v-if="job.length">
+        <h2 class="subtitle has-text-centered">No se encontraron categorías</h2>
+      </div>
+      <div v-else class="box mt-5" style="min-height: 10rem;">
         <b-icon
           class="is-pulled-left"
           icon="view-dashboard"
