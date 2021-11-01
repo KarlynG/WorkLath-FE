@@ -1,5 +1,8 @@
 # worklath-fe
 
+# Need the BE to work: https://github.com/KarlynG/WorkLath
+# Categories are reffered as Jobs in the BE, need to add one first to see it in the FE.
+
 ## Project setup
 ```
 npm install
