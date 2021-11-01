@@ -1,138 +1,112 @@
 <template>
-<section class="hero ">
-    <b-navbar  >
-        <template #brand>
-            <b-navbar-item class="padding" tag="router-link" :to="{ path: '/' }">
-                <img
-                    src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-                    alt="Lightweight UI components for Vue.js based on Bulma"
-                >
-            </b-navbar-item>
-            
-        </template>
-        
+  <section class="hero">
+    <b-navbar>
+      <template #brand>
+        <b-navbar-item
+          class="padding"
+          tag="router-link"
+          :to="{ path: '/home' }"
+        >
+          <img
+            src="https://raw.githubusercontent.com/adriancast/Bulma-login-template/master/assets/img/logo_r_resumme.png"
+         alt="Lightweight UI components for Vue.js based on Bulma"
+          />
+        </b-navbar-item>
+      </template>
 
-        <template #end>
-            <b-navbar-item class="has-text-info"  href="#">
-                Todos los empleos
-            </b-navbar-item>
-            <b-navbar-item class="has-text-info" tag="router-link" :to="{ path: '/about' }">
-                        Documentacion
-                
-            </b-navbar-item>
+      <template #end>
+        <b-navbar-item class="has-text-info" tag="router-link"
+          :to="{ path: '/' }">
+          Home
+        </b-navbar-item>
+        <b-navbar-item
+          class="has-text-info"
+          tag="router-link"
+          :to="{ path: '/' }"
+        >
+          Ayuda
+        </b-navbar-item>
+        <b-navbar-item tag="div">
+          <router-link
+            class="button is-vcentered is-primary is-outlined"
+            :to="`/login`"
+            v-if="!isLoggedIn"
+          >
+            Iniciar sesion
+          </router-link>
+          <b-dropdown v-else :triggers="['hover']" aria-role="list">
+            <template #trigger>
+                <b-button
+                    :label="username"
+                    type="is-info"
+                    icon-right="menu-down" />
+            </template>
 
-            <b-navbar-dropdown  label="Categoria">
-                <b-navbar-item href="#">
-                    Web develer
-                </b-navbar-item>
-                <b-navbar-item href="#">
-                    Tester
-                </b-navbar-item>
-            </b-navbar-dropdown>
-            <b-navbar-item tag="div">
-                <b-field type="is-info span-none" >
-                    <b-input
-                    
-                     placeholder="Buscar..."
-                        type="search"
-                        icon="magnify"
-                        icon-clickable
-                      @icon-click="searchIconClick">
-                    </b-input>
-                    
-                </b-field>
-            </b-navbar-item>
-            <b-navbar-item tag="div">
-                <div  class="buttons">
-                    <!--Inicio del sidebar del sidebar-->
-     <b-sidebar style="width : 40%"
-        
-      type="is-light"
-      :fullheight="fullheight"
-      :overlay="overlay"
-      :right="right"
-      v-model="open"
-      :width ="width"
-     
-
-      
-     
-    >
-      <div class="p-1 ">
-    
-        <b-menu>
-          <Formulario/>
-        </b-menu>
-      </div>
-    </b-sidebar> <!--Final del sidebar-->
-                    <a @click="open = true"  class="button is-info"  >
-                        <strong >Nuevo Empleo</strong>
-                    </a>
-                    <a class="button is-info is-light">     
-                        Iniciar sesión
-                    </a>
-                </div>
-            </b-navbar-item>
-        </template>
+            <b-dropdown-item aria-role="listitem">Ver perfil</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">Configuración</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem" @click="goHome()">Cerrar sesion</b-dropdown-item>
+        </b-dropdown>
+        </b-navbar-item>
+      </template>
     </b-navbar>
-    </section>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue  } from 'vue-property-decorator';
-import Formulario from '@/components/Formulario.vue';
+import { Component, Vue } from "vue-property-decorator";
+import Formulario from "@/components/Formulario.vue";
 
 @Component({
   components: {
-    Formulario
+    Formulario,
   },
 })
-
-
 export default class BarraNave extends Vue {
- data() {
-    return {
-      open: false,
-      overlay: true,
-      fullheight: true,
-      right: true,
-      width : true
-      
-      
-    }
+  open = false;
+  overlay = true;
+  fullheight = true;
+  right = true;
+  width = true;
+
+  get isLoggedIn() {
+    return this.$store.state.isLoggedIn;
+  }
+
+  get username(){
+    return this.$store.state.username;
+  }
+
+  goHome(){
+    this.$store.commit("isLoggedIn", false);
   }
 }
-
 </script>
 
 
 <style >
-.hero{
-     padding: 30px;
+.hero {
+  padding: 30px;
 }
 
-a:hover{
-    color: #167df0;
+a:hover {
+  color: #167df0;
 }
-a{
-    color: black;
+a {
+  color: black;
 }
 
 .p-1 {
   padding: 1em;
-  
 }
-.container .is-max-desktop{
-   width: 40%;
+.container .is-max-desktop {
+  width: 40%;
 }
-.b-sidebar .sidebar-content  {
-    width: 530px!important;
+.b-sidebar .sidebar-content {
+  width: 580px !important;
 }
 .select:not(.is-multiple):not(.is-loading)::after,
 .navbar-link:not(.is-arrowless)::after {
-    border-color: #167df0 !important;  
-} 
-
-
+  border-color: #167df0 !important;
+}
 </style>
 
